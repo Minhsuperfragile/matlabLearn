@@ -1,0 +1,8 @@
+function result = bisectionMethod()
+    
+
+
+
+
+
+end
