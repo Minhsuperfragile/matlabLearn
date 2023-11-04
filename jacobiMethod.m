@@ -1,8 +1,8 @@
-function [x,er] = jacobiMethod(A,b)
+function [x,er] = jacobiMethod(A,b,maxIter)
     n = size(A);
-    x = zeros(10,n(2));
-    er = zeros(9,n(2));
-    for ii = 1:1:10
+    x = zeros(maxIter,n(2));
+    er = zeros(maxIter-1,n(2));
+    for ii = 1:1:maxIter
         for col = 1:1:n(1)
             x(ii+1,col) = b(col);
             for c = 1:1:n(2)

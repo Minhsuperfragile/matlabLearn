@@ -2,6 +2,7 @@ function [x,er] = gaussSeidel(A,b,maxIter,relaxation)
     if ~exist('relaxation','var')
        relaxation = 1;
     end
+    maxIter = maxIter +1;
     n = size(A);
     cols = n(2);
     x = zeros(maxIter,cols);
