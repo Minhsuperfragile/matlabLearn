@@ -1,13 +1,14 @@
 function intergral = gaussLegendre(f,lower,upper,points)
     h = (upper - lower)/2;
+    g = (upper + lower)/2;
     if points == 1
        intergral = h*(2*f(0));
     end
     if points == 2
-        intergral = h*(f(-1/sqrt(3)) + f(1/sqrt(3)));
+        intergral = h*(f(-1/sqrt(3)*h+g) + f(1/sqrt(3)*h+g));
     end
     if points == 3
-        intergral = h*(5/9*f(-sqrt(3/5))+8/9*f(0)+5/9*f(sqrt(3/5)));
+        intergral = h*(5/9*f(-sqrt(3/5)*h+g)+8/9*f((0*h+g)+5/9)*f(sqrt(3/5)*h+g));
     end
     if points == 4
         c0 = (18-sqrt(30))/36;
@@ -18,7 +19,7 @@ function intergral = gaussLegendre(f,lower,upper,points)
         x1 = -sqrt(525-70*sqrt(30))/35;
         x2 = sqrt(525-70*sqrt(30))/35;
         x3 = sqrt(525+70*sqrt(30))/35;
-        intergral = h*(c0*f(x0) + c1*f(x1) + c2*f(x2) + c3*f(x3));
+        intergral = h*(c0*f(x0*h+g) + c1*f(x1*h+g) + c2*f(x2*h+g) + c3*f(x3*h+g));
     end
     if points == 5
         c0 = (322-13*sqrt(70))/900;
@@ -30,7 +31,7 @@ function intergral = gaussLegendre(f,lower,upper,points)
         x1 = -sqrt(245-14*sqrt(70))/21;
         x3 = sqrt(245-14*sqrt(70))/21;
         x4 = sqrt(245+14*sqrt(70))/21;
-        intergral = h*(c0*f(x0) + c1*f(x1) + c2*f(0) + c3*f(x3) + c4*f(x4));
+        intergral = h*(c0*f(x0*h+g) + c1*f(x1*h+g) + c2*f(0*h+g) + c3*f(x3*h+g) + c4*f(x4*h+g));
     end
     if points == 6
         c0 = 0.1713245;
@@ -45,6 +46,6 @@ function intergral = gaussLegendre(f,lower,upper,points)
         x3 = 0.2386192;
         x4 = 0.6612094;
         x5 = 0.9324695;
-        intergral = h*(c0*f(x0) + c1*f(x1) + c2*f(x2) + c3*f(x3) + c4*f(x4) + c5*f(x5));
+        intergral = h*(c0*f(x0*h+g) + c1*f(x1*h+g) + c2*f(x2*h+g) + c3*f(x3*h+g) + c4*f(x4*h+g) + c5*f(x5*h+g));
     end
 end
