@@ -1,4 +1,7 @@
-function [x,er] = gaussSeidel(A,b,maxIter)
+function [x,er] = gaussSeidel(A,b,maxIter,relaxation)
+    if ~exist('relaxation','var')
+       relaxation = 1;
+    end
     n = size(A);
     cols = n(2);
     x = zeros(maxIter,cols);
@@ -13,6 +16,7 @@ function [x,er] = gaussSeidel(A,b,maxIter)
                 x(ii,c) = x(ii,c) - A(c,k)*x(ii,k);
             end
             x(ii,c) = x(ii,c)/A(c,c);
+            x(ii,c) = x(ii,c)*relaxation + x(ii-1,c)*(1-relaxation);
             er(ii-1,c) = abs((x(ii,c)-x(ii-1,c))/x(ii,c))*100;
         end    
     end
@@ -22,3 +26,7 @@ end
 % output also includes a table of error between each x between each 2
 % iterations.
 % initial guesses are all 0
+% remember to set input matrix as a diagonally dominant matrix, 
+% that means abs(A_ii) >= Sum (abs(A_ij)i!=j)
+% tr? tuy?t ??i c?a h? s? trên ???ng chéo l?n h?n ho?c b?ng t?ng tr? tuy?t
+% ??i c?a t?t c? h? s? khác cùng hàng
